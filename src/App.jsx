@@ -16,7 +16,7 @@ const App = () => {
   <div className="relative gradient text-blue-500">
    <CustonCursur/>
    <ParticleBackground/>   
-    <Navbar/>
+    <Navbar/> 
     <Home/>
     <About/>
     <Skills/>

@@ -30,9 +30,29 @@ import p2 from "../assets/Portfoliowebsite/p2.jpg";
 import portfolipic from "../assets/Portfoliowebsite/portfolipic.png";
 import p4 from "../assets/Portfoliowebsite/p4.jpg";
 import p5 from "../assets/Portfoliowebsite/p5.jpg";
+import hrms from "../assets/Portfoliowebsite/hrms.png";
 
 const projects = [
-  {
+{
+  title: "Smart HRMS",
+  short: "Human Resource Management System",
+  details:
+    "Built a full-stack HRMS application with role-based access for Admin and Employee. Features include Authentication, Employee Management, Attendance Tracking, Leave Management, and a real-time Dashboard. Deployed on Vercel with MongoDB Atlas as database.",
+  github: "https://github.com/Aiman2027/smart-hrms-project",
+  live: "https://smart-hrms-project-b9lx.vercel.app",
+  img: hrms,
+  showLive: true,
+  tech: [
+    { icon: FaReact, name: "React" },
+    { icon: FaNodeJs, name: "Node.js" },
+    { icon: SiMongodb, name: "MongoDB" },
+    { icon: SiTailwindcss, name: "Tailwind CSS" },
+    { icon: SiFramer, name: "Framer Motion" },
+    { name: "Express.js" },
+    { name: "JWT Auth" },
+  ],
+},
+ {
     title: "InternINDIA AI Platform",
     short: "AI Internship Recommender",
     details:

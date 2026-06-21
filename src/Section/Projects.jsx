@@ -31,28 +31,47 @@ import portfolipic from "../assets/Portfoliowebsite/portfolipic.png";
 import p4 from "../assets/Portfoliowebsite/p4.jpg";
 import p5 from "../assets/Portfoliowebsite/p5.jpg";
 import hrms from "../assets/Portfoliowebsite/hrms.png";
+import Expensetracker from "../assets/Portfoliowebsite/Expensetracker.jpg";
 
 const projects = [
-{
-  title: "Smart HRMS",
-  short: "Human Resource Management System",
-  details:
-    "Built a full-stack HRMS application with role-based access for Admin and Employee. Features include Authentication, Employee Management, Attendance Tracking, Leave Management, and a real-time Dashboard. Deployed on Vercel with MongoDB Atlas as database.",
-  github: "https://github.com/Aiman2027/smart-hrms-project",
-  live: "https://smart-hrms-project-b9lx.vercel.app",
-  img: hrms,
-  showLive: true,
-  tech: [
-    { icon: FaReact, name: "React" },
-    { icon: FaNodeJs, name: "Node.js" },
-    { icon: SiMongodb, name: "MongoDB" },
-    { icon: SiTailwindcss, name: "Tailwind CSS" },
-    { icon: SiFramer, name: "Framer Motion" },
-    { name: "Express.js" },
-    { name: "JWT Auth" },
-  ],
-},
- {
+  {
+    title: "Monthly Expense Tracker",
+    short: "MERN Personal Finance Tracker",
+    details:
+      "Built a full-stack MERN application to track monthly expenses with category breakdown, a pie-chart visualization, and month-wise filtering. Includes summary stats like total spend, average expense, and top spending category. Built this because I personally needed a simple way to track where my money goes each month instead of maintaining spreadsheets. Frontend and backend deployed separately on Vercel, with MongoDB Atlas as the database.",
+    github: "https://github.com/Aiman2027/expense-tracker-frontend",
+    githubBackend: "https://github.com/Aiman2027/expense-tracker-backend",
+    live: "https://expense-tracker-frontend-blue-six.vercel.app/",
+    img: Expensetracker,
+    showLive: true,
+    tech: [
+      { icon: FaReact, name: "React" },
+      { icon: FaNodeJs, name: "Node.js" },
+      { icon: SiMongodb, name: "MongoDB" },
+      { name: "Express.js" },
+      { name: "Recharts" },
+    ],
+  },
+  {
+    title: "Smart HRMS",
+    short: "Human Resource Management System",
+    details:
+      "Built a full-stack HRMS application with role-based access for Admin and Employee. Features include Authentication, Employee Management, Attendance Tracking, Leave Management, and a real-time Dashboard. Deployed on Vercel with MongoDB Atlas as database.",
+    github: "https://github.com/Aiman2027/smart-hrms-project",
+    live: "https://smart-hrms-project-b9lx.vercel.app",
+    img: hrms,
+    showLive: true,
+    tech: [
+      { icon: FaReact, name: "React" },
+      { icon: FaNodeJs, name: "Node.js" },
+      { icon: SiMongodb, name: "MongoDB" },
+      { icon: SiTailwindcss, name: "Tailwind CSS" },
+      { icon: SiFramer, name: "Framer Motion" },
+      { name: "Express.js" },
+      { name: "JWT Auth" },
+    ],
+  },
+  {
     title: "InternINDIA AI Platform",
     short: "AI Internship Recommender",
     details:
@@ -138,7 +157,7 @@ export default function Projects() {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="proj" className= "relative w-full py-20 bg-black text-white overflow-hidden">
+    <section id="proj" className="relative w-full py-20 bg-black text-white overflow-hidden">
       <ParticleBackground />
 
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">
@@ -174,7 +193,6 @@ export default function Projects() {
 
                 <p className="text-sm text-gray-400">{proj.short}</p>
 
-              
                 <div className="flex flex-wrap gap-2 mt-3">
                   {proj.tech.map((t, i) => {
                     const Icon = t.icon;
@@ -196,13 +214,30 @@ export default function Projects() {
                   </motion.p>
                 )}
 
-                <div className="flex gap-4 mt-4">
-                  <a href={proj.github} target="_blank" rel="noreferrer">
+                <div className="flex gap-4 mt-4 items-center">
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={proj.githubBackend ? "Frontend Repo" : "GitHub Repo"}
+                  >
                     <FaGithub />
                   </a>
 
+                  {proj.githubBackend && (
+                    <a
+                      href={proj.githubBackend}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Backend Repo"
+                      className="text-xs text-gray-400 hover:text-cyan-400 flex items-center gap-1"
+                    >
+                      <FaGithub /> BE
+                    </a>
+                  )}
+
                   {proj.showLive && (
-                    <a href={proj.live} target="_blank" rel="noreferrer">
+                    <a href={proj.live} target="_blank" rel="noreferrer" title="Live Site">
                       <FaGlobe />
                     </a>
                   )}

@@ -57,7 +57,7 @@ export default function Experience() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Reusable Experience Card Content
+  // Reusable Experience Content
   const ExperienceContent = ({ exp }) => (
     <div className="relative z-10">
       <span className="text-xs font-semibold tracking-widest text-teal-400 uppercase">
@@ -88,7 +88,7 @@ export default function Experience() {
         ))}
       </div>
 
-      {/* Final Project GitHub Link */}
+      {/* GitHub Project Link */}
       {exp.projectLink && (
         <div className="mt-6 pt-4 border-t border-gray-700/70">
           <p className="text-gray-400 text-xs mb-3">
@@ -142,9 +142,9 @@ export default function Experience() {
         </span>
       </h2>
 
-      {/* Desktop Experience Cards */}
+      {/* Desktop Cards - Fixed Position */}
       {!isMobile && (
-        <div className="relative w-full max-w-6xl flex items-center justify-center h-[500px]">
+        <div className="relative w-full max-w-6xl flex items-stretch justify-center gap-6 px-6 z-10">
           {experiences.map((exp, idx) => {
             const isActive = idx === activeIndex;
 
@@ -152,25 +152,31 @@ export default function Experience() {
               <motion.div
                 key={idx}
                 onMouseEnter={() => setActiveIndex(idx)}
-                className="absolute w-[340px] p-6 rounded-2xl bg-gray-900/90 backdrop-blur border border-gray-700 shadow-xl overflow-hidden cursor-pointer"
+                onFocus={() => setActiveIndex(idx)}
+                tabIndex={0}
+                className="relative flex-1 min-w-0 min-h-[480px] p-6 rounded-2xl bg-gray-900/90 backdrop-blur border border-gray-700 shadow-xl overflow-hidden cursor-pointer outline-none"
                 animate={{
-                  x: (idx - activeIndex) * 360,
-                  scale: isActive ? 1.05 : 0.85,
-                  opacity: isActive ? 1 : 0.4,
-                  rotateY: isActive
-                    ? 0
-                    : idx < activeIndex
-                    ? 15
-                    : -15,
-                  zIndex: isActive ? 10 : 1,
+                  scale: isActive ? 1.04 : 0.96,
+                  opacity: isActive ? 1 : 0.75,
+                  borderColor: isActive
+                    ? "#22d3ee"
+                    : "#374151",
+                  boxShadow: isActive
+                    ? "0 0 30px rgba(34,211,238,0.18)"
+                    : "0 0 0px rgba(34,211,238,0)",
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 90,
-                  damping: 18,
+                  stiffness: 180,
+                  damping: 22,
                 }}
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-500 blur-md opacity-10 pointer-events-none" />
+                {/* Active Card Glow */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br from-teal-400 to-blue-500 pointer-events-none transition-opacity duration-300 ${
+                    isActive ? "opacity-10" : "opacity-0"
+                  }`}
+                />
 
                 <ExperienceContent exp={exp} />
               </motion.div>
@@ -179,7 +185,7 @@ export default function Experience() {
         </div>
       )}
 
-      {/* Mobile Experience Cards */}
+      {/* Mobile Cards */}
       {isMobile && (
         <div className="w-full px-6 flex flex-col gap-6 z-10">
           {experiences.map((exp, idx) => (

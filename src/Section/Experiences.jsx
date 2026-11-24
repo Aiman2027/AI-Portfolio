@@ -17,6 +17,8 @@ const experiences = [
       "Gemini API",
       "Generative AI",
     ],
+    projectName: "FoodRescue AI - Final Capstone",
+    projectLink: "https://github.com/Aiman2027/FoodRescue-AI",
   },
   {
     role: "MERN Stack Developer Intern",
@@ -38,12 +40,7 @@ const experiences = [
     duration: "Jun 2025",
     description:
       "Developed web application components using Python, MySQL, HTML, and CSS. Worked on backend functionality, database operations, and student data management while gaining practical experience in web development.",
-    technologies: [
-      "Python",
-      "MySQL",
-      "HTML",
-      "CSS",
-    ],
+    technologies: ["Python", "MySQL", "HTML", "CSS"],
   },
 ];
 
@@ -66,10 +63,71 @@ export default function Experience() {
     const percent = e.clientX / window.innerWidth;
     const index = Math.floor(percent * experiences.length);
 
-    setActiveIndex(
-      Math.min(index, experiences.length - 1)
-    );
+    setActiveIndex(Math.min(index, experiences.length - 1));
   };
+
+  // Reusable Experience Card Content
+  const ExperienceContent = ({ exp }) => (
+    <div className="relative z-10">
+      <span className="text-xs font-semibold tracking-widest text-teal-400 uppercase">
+        Professional Experience
+      </span>
+
+      <h3 className="text-xl font-semibold text-cyan-400 mt-3 mb-2">
+        {exp.role}
+      </h3>
+
+      <p className="text-gray-400 text-sm mb-4">
+        {exp.company} | {exp.duration}
+      </p>
+
+      <p className="text-gray-300 text-sm leading-relaxed">
+        {exp.description}
+      </p>
+
+      {/* Technology Badges */}
+      <div className="flex flex-wrap gap-2 mt-5">
+        {exp.technologies.map((tech) => (
+          <span
+            key={tech}
+            className="text-xs px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {/* Final Project GitHub Link */}
+      {exp.projectLink && (
+        <div className="mt-6 pt-4 border-t border-gray-700/70">
+          <p className="text-gray-400 text-xs mb-3">
+            Featured Final Project
+          </p>
+
+          <a
+            href={exp.projectLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-teal-500 to-blue-600 text-white text-sm font-semibold hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.726-4.043-1.416-4.043-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.762-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.467-2.38 1.235-3.22-.123-.303-.535-1.524.117-3.176 0 0 1.008-.323 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.553 3.297-1.23 3.297-1.23.653 1.652.242 2.873.12 3.176.77.84 1.232 1.91 1.232 3.22 0 4.61-2.807 5.625-5.48 5.92.43.37.814 1.1.814 2.22v3.293c0 .32.216.694.825.576C20.565 21.796 24 17.297 24 12 24 5.37 18.627 0 12 0Z" />
+            </svg>
+
+            View Final Project
+
+            <span>↗</span>
+          </a>
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <section
@@ -97,17 +155,17 @@ export default function Experience() {
 
       {/* Desktop Experience Cards */}
       {!isMobile && (
-        <div className="relative w-full max-w-6xl flex items-center justify-center h-[460px]">
+        <div className="relative w-full max-w-6xl flex items-center justify-center h-[500px]">
           {experiences.map((exp, idx) => {
             const isActive = idx === activeIndex;
 
             return (
               <motion.div
                 key={idx}
-                className="absolute w-[340px] p-6 rounded-2xl bg-gray-900/80 backdrop-blur border border-gray-700 shadow-xl"
+                className="absolute w-[340px] p-6 rounded-2xl bg-gray-900/90 backdrop-blur border border-gray-700 shadow-xl overflow-hidden"
                 animate={{
                   x: (idx - activeIndex) * 360,
-                  scale: isActive ? 1.1 : 0.85,
+                  scale: isActive ? 1.05 : 0.85,
                   opacity: isActive ? 1 : 0.4,
                   rotateY: isActive
                     ? 0
@@ -122,38 +180,9 @@ export default function Experience() {
                   damping: 18,
                 }}
               >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-500 blur-md opacity-20" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-500 blur-md opacity-10 pointer-events-none" />
 
-                <div className="relative z-10">
-                  <div className="mb-4">
-                    <span className="text-xs font-semibold tracking-widest text-teal-400 uppercase">
-                      Professional Experience
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-semibold text-cyan-400 mb-2">
-                    {exp.role}
-                  </h3>
-
-                  <p className="text-gray-400 text-sm mb-4">
-                    {exp.company} | {exp.duration}
-                  </p>
-
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {exp.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mt-5">
-                    {exp.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <ExperienceContent exp={exp} />
               </motion.div>
             );
           })}
@@ -173,38 +202,11 @@ export default function Experience() {
                 duration: 0.5,
                 delay: idx * 0.2,
               }}
-              className="relative p-5 rounded-2xl bg-gray-900/80 backdrop-blur border border-gray-700 shadow-xl overflow-hidden"
+              className="relative p-5 rounded-2xl bg-gray-900/90 backdrop-blur border border-gray-700 shadow-xl overflow-hidden"
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-500 blur-md opacity-20 pointer-events-none" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-500 blur-md opacity-10 pointer-events-none" />
 
-              <div className="relative z-10">
-                <span className="text-xs font-semibold tracking-widest text-teal-400 uppercase">
-                  Professional Experience
-                </span>
-
-                <h3 className="text-lg font-semibold text-cyan-400 mt-2">
-                  {exp.role}
-                </h3>
-
-                <p className="text-gray-400 text-xs mb-3">
-                  {exp.company} | {exp.duration}
-                </p>
-
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <ExperienceContent exp={exp} />
             </motion.div>
           ))}
         </div>

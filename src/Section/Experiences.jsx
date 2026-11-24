@@ -57,15 +57,6 @@ export default function Experience() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const handleMouseMove = (e) => {
-    if (isMobile) return;
-
-    const percent = e.clientX / window.innerWidth;
-    const index = Math.floor(percent * experiences.length);
-
-    setActiveIndex(Math.min(index, experiences.length - 1));
-  };
-
   // Reusable Experience Card Content
   const ExperienceContent = ({ exp }) => (
     <div className="relative z-10">
@@ -121,7 +112,6 @@ export default function Experience() {
             </svg>
 
             View Final Project
-
             <span>↗</span>
           </a>
         </div>
@@ -133,7 +123,6 @@ export default function Experience() {
     <section
       id="exp"
       className="relative w-full min-h-screen bg-black text-white flex flex-col items-center justify-center overflow-hidden py-20"
-      onMouseMove={handleMouseMove}
     >
       <ParticleBackground />
 
@@ -162,7 +151,8 @@ export default function Experience() {
             return (
               <motion.div
                 key={idx}
-                className="absolute w-[340px] p-6 rounded-2xl bg-gray-900/90 backdrop-blur border border-gray-700 shadow-xl overflow-hidden"
+                onMouseEnter={() => setActiveIndex(idx)}
+                className="absolute w-[340px] p-6 rounded-2xl bg-gray-900/90 backdrop-blur border border-gray-700 shadow-xl overflow-hidden cursor-pointer"
                 animate={{
                   x: (idx - activeIndex) * 360,
                   scale: isActive ? 1.05 : 0.85,
